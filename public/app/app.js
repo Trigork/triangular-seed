@@ -1,5 +1,6 @@
 angular.module('myApp', [
 	'ngAnimate',
 	'app.routes',
-	'mainCtrl'
+	'mainCtrl',
+	'aboutCtrl'
 ]);
