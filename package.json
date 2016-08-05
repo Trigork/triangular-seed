@@ -16,11 +16,12 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-less": "^3.1.0"
+    "gulp-less": "^3.1.0",
+    "gulp-nodemon": "^2.1.0"
   },
   "scripts": {
     "postinstall": "bower install",
     "prestart": "gulp css",
-    "start": "nodemon server.js"
+    "start": "gulp start"
   }
 }
