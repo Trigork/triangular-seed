@@ -15,11 +15,28 @@ gulp.task('css', function() {
 		.pipe(gulp.dest('public/assets/css'));
 });
 
+gulp.task('export_libs', function(){
+	// grab the required libraries from node_modules and export them to assets/libs
+	return gulp.src([
+		'node_modules/angular/*.min.js', 'node_modules/angular-animate/*.min.js',
+		'node_modules/angular-route/*.min.js', 'node_modules/animate.css/*.min.css',
+		'node_modules/bootstrap/dist/js/*.min.js', 'node_modules/bootstrap/dist/css/*.min.css',
+		'node_modules/font-awesome/css/*.min.css',
+	])
+	.pipe(gulp.dest('public/assets/libs'))
+});
+
+gulp.task('export_fonts', function(){
+	return gulp.src(['node_modules/font-awesome/fonts/*.woff'])
+	.pipe(gulp.dest('public/assets/fonts'))
+})
+
 gulp.task('start', function () {
   nodemon({
-    script: 'server.js'
-  , ext: 'js html less'
-  , tasks: ['css']
-  , env: { 'NODE_ENV': 'development' }
+    script: 'server.js',
+		watch: 'public/app/**/*.*',
+		ext: 'js html less',
+		tasks: ['css', 'export_fonts', 'export_libs'],
+		env: { 'NODE_ENV': 'development' }
   })
 });
